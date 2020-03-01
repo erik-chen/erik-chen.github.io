@@ -56,7 +56,7 @@
                         erik-chen的博客
                     </a>
                 
-                <p class="description">关注机器学习、数据结构、算法、Web 开发、Python、Django</p>
+                <p class="description">Happy thinking, quick coding. |关注机器学习、数据结构、算法、Web 开发、Python、Django</p>
             </div>
             <div>
                 <nav id="nav-menu" class="clearfix">
@@ -147,24 +147,29 @@
   <ul>
     <li><a href="#第一题-有多少小于当前数字的数字httpsleetcode-cncomproblemshow-many-numbers-are-smaller-than-the-current-number"><a href="https://leetcode-cn.com/problems/how-many-numbers-are-smaller-than-the-current-number/">第一题. 有多少小于当前数字的数字</a></a>
       <ul>
+        <li><a href="#考察知识点">考察知识点</a></li>
         <li><a href="#解题思路">解题思路</a></li>
         <li><a href="#代码">代码</a></li>
       </ul>
     </li>
     <li><a href="#第二题-通过投票对团队排名httpsleetcode-cncomproblemsrank-teams-by-votes"><a href="https://leetcode-cn.com/problems/rank-teams-by-votes/">第二题. 通过投票对团队排名</a></a>
       <ul>
+        <li><a href="#考察知识点-1">考察知识点</a></li>
         <li><a href="#解题思路-1">解题思路</a></li>
         <li><a href="#代码-1">代码</a></li>
       </ul>
     </li>
-    <li><a href="#第三题-二叉树中的列表httpsleetcode-cncomproblemslinked-list-in-binary-tree"><a href="https://leetcode-cn.com/problems/linked-list-in-binary-tree/">第三题. 二叉树中的列表</a></a>
+    <li><a href="#第三题-二叉树中的链表httpsleetcode-cncomproblemslinked-list-in-binary-tree"><a href="https://leetcode-cn.com/problems/linked-list-in-binary-tree/">第三题. 二叉树中的链表</a></a>
       <ul>
+        <li><a href="#考察知识点-2">考察知识点</a></li>
         <li><a href="#解题思路-2">解题思路</a></li>
         <li><a href="#代码-2">代码</a></li>
       </ul>
     </li>
-    <li><a href="#第四题-使网格图至少有一条有效路径的最小代价httpsleetcode-cncomproblemsminimum-cost-to-make-at-least-one-valid-path-in-a-grid"><a href="https://leetcode-cn.com/problems/minimum-cost-to-make-at-least-one-valid-path-in-a-grid/">第四题. 使网格图至少有一条有效路径的最小代价</a></a>
+    <li><a href="#第四题-使网格图至少有一条有效路径的最小代价httpsleetcode-cncomproblemsminimum-cost-to-make-at-least-one-valid-path-in-a-grid"><a href="https://leetcode-cn.com/problems/minimum-cost-to-make-at-least-one-valid-path-in-a-grid/">第四题. 使网格图至少有一条有效路径的最小代价</a></a></li>
+    <li><a href="#第三题-二叉树中的链表httpsleetcode-cncomproblemslinked-list-in-binary-tree-1"><a href="https://leetcode-cn.com/problems/linked-list-in-binary-tree/">第三题. 二叉树中的链表</a></a>
       <ul>
+        <li><a href="#考察知识点-3">考察知识点</a></li>
         <li><a href="#解题思路-3">解题思路</a></li>
         <li><a href="#代码-3">代码</a></li>
       </ul>
@@ -233,8 +238,10 @@
         <div class="post-content">
             <p>本文是力扣第128场双周赛的题解分享。</p>
 <h2 id="第一题-有多少小于当前数字的数字httpsleetcode-cncomproblemshow-many-numbers-are-smaller-than-the-current-number"><a href="https://leetcode-cn.com/problems/how-many-numbers-are-smaller-than-the-current-number/">第一题. 有多少小于当前数字的数字</a></h2>
+<h3 id="考察知识点">考察知识点</h3>
+<p>数据结构：数组、哈希表</p>
 <h3 id="解题思路">解题思路</h3>
-<p>维护一个字典，用来储存每个num和它的排序（注意并列的情况）</p>
+<p>维护一个哈希表，用来储存每个num和它的排序（注意并列的情况）</p>
 <h3 id="代码">代码</h3>
 <div class="highlight"><div style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
 <table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
@@ -269,6 +276,10 @@
 </code></pre></td></tr></table>
 </div>
 </div><h2 id="第二题-通过投票对团队排名httpsleetcode-cncomproblemsrank-teams-by-votes"><a href="https://leetcode-cn.com/problems/rank-teams-by-votes/">第二题. 通过投票对团队排名</a></h2>
+<h3 id="考察知识点-1">考察知识点</h3>
+<p>数据结构：数组、字符串</p>
+<p>算法：排序</p>
+<p>其它：字典序</p>
 <h3 id="解题思路-1">解题思路</h3>
 <p>其实就是对votes[0]里的每一个字母进行排序，关键是排序的依据是什么？Python有现成的sort函数，那么参数key是什么呢？</p>
 <p><strong>1.</strong> 比较字母<strong><code>A</code></strong>比字母<strong><code>B</code></strong>在所有str的第<strong><code>1</code></strong>位，哪个出现次数多</p>
@@ -308,7 +319,10 @@
 </span><span style="color:#998;font-style:italic"></span>        <span style="color:#000;font-weight:bold">return</span> <span style="color:#a61717;background-color:#e3d2d2">&#39;&#39;</span>.<span style="color:#900;font-weight:bold">join</span>(<span style="color:#900;font-weight:bold">sorted</span>(votes[<span style="color:#099">0</span>], key=lambda x: mapping[x]))                  <span style="color:#998;font-style:italic">// 进行排序
 </span></code></pre></td></tr></table>
 </div>
-</div><h2 id="第三题-二叉树中的列表httpsleetcode-cncomproblemslinked-list-in-binary-tree"><a href="https://leetcode-cn.com/problems/linked-list-in-binary-tree/">第三题. 二叉树中的列表</a></h2>
+</div><h2 id="第三题-二叉树中的链表httpsleetcode-cncomproblemslinked-list-in-binary-tree"><a href="https://leetcode-cn.com/problems/linked-list-in-binary-tree/">第三题. 二叉树中的链表</a></h2>
+<h3 id="考察知识点-2">考察知识点</h3>
+<p>数据结构：二叉树、链表</p>
+<p>算法：深度优先搜索</p>
 <h3 id="解题思路-2">解题思路</h3>
 <p><strong>1.</strong> 外层递归解决链表的头和tree的某个node匹配的问题，匹配成功后进入内层递归</p>
 <p><strong>2.</strong> 内层递归解决链表的每个node和tree的每层node匹配的问题</p>
@@ -358,6 +372,11 @@
 </code></pre></td></tr></table>
 </div>
 </div><h2 id="第四题-使网格图至少有一条有效路径的最小代价httpsleetcode-cncomproblemsminimum-cost-to-make-at-least-one-valid-path-in-a-grid"><a href="https://leetcode-cn.com/problems/minimum-cost-to-make-at-least-one-valid-path-in-a-grid/">第四题. 使网格图至少有一条有效路径的最小代价</a></h2>
+<h2 id="第三题-二叉树中的链表httpsleetcode-cncomproblemslinked-list-in-binary-tree-1"><a href="https://leetcode-cn.com/problems/linked-list-in-binary-tree/">第三题. 二叉树中的链表</a></h2>
+<h3 id="考察知识点-3">考察知识点</h3>
+<p>数据结构：二维数组</p>
+<p>算法：广度优先搜索</p>
+<p>其他：辅助变量</p>
 <h3 id="解题思路-3">解题思路</h3>
 <p><strong>1.</strong> 因为需要计算改变数，因此想到BFS</p>
 <p><strong>2.</strong> queue储存所有当前这步可以search到的地方</p>
