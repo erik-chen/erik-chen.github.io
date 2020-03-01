@@ -1,0 +1,666 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <title>力扣题解|第178场周赛 | erik-chen的博客</title>
+    <meta property="og:title" content="力扣题解|第178场周赛 - erik-chen的博客">
+    <meta property="og:type" content="article">
+        
+    <meta property="article:published_time" content='2020-03-01T13:20:00&#43;08:00'>
+        
+        
+    <meta property="article:modified_time" content='2020-03-01T13:20:00&#43;08:00'>
+        
+    <meta name="Keywords" content="关注Python,Algorithm,Data Structure,数据结构,Machine Learning,算法,Django,erik chen,erik-chen,博客">
+    <meta name="description" content="力扣题解|第178场周赛">
+        
+    <meta name="author" content="erik-chen">
+    <meta property="og:url" content="https://erik-chen.github.io/post/2020-03-01-leetcode-contest-178/">
+    <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon">
+
+    <link rel="stylesheet" href='/css/normalize.css'>
+    <link rel="stylesheet" href='/css/style.css'>
+    <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+
+    
+    <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+    <script>
+    (adsbygoogle = window.adsbygoogle || []).push({
+        google_ad_client: "ca-pub-4031353640611810",
+        enable_page_level_ads: true
+    });
+    </script>
+    
+
+
+    
+    
+        <link rel="stylesheet" href='/css/douban.css'>
+    
+        <link rel="stylesheet" href='/css/other.css'>
+    
+</head>
+
+
+<body>
+    <header id="header" class="clearfix">
+    <div class="container">
+        <div class="col-group">
+            <div class="site-name ">
+                
+                    <a id="logo" href="https://erik-chen.github.io/">
+                        erik-chen的博客
+                    </a>
+                
+                <p class="description">关注机器学习、数据结构、算法、Web 开发、Python、Django</p>
+            </div>
+            <div>
+                <nav id="nav-menu" class="clearfix">
+                    <a class="current" href="https://erik-chen.github.io/">首页</a>
+                    
+                    <a  href="https://erik-chen.github.io/archives/" title="归档">归档</a>
+                    
+                    <a  href="https://erik-chen.github.io/about/" title="关于">关于</a>
+                    
+                </nav>
+            </div>
+        </div>
+    </div>
+</header>
+
+    <div id="body">
+        <div class="container">
+            <div class="col-group">
+
+                <div class="col-8" id="main">
+                    
+<div class="res-cons">
+    <style type="text/css">
+    .post-toc {
+        position: fixed;
+        width: 200px;
+        margin-left: -210px;
+        padding: 5px 10px;
+        font-family: Athelas, STHeiti, Microsoft Yahei, serif;
+        font-size: 12px;
+        border: 1px solid rgba(0, 0, 0, .07);
+        border-radius: 5px;
+        background-color: rgba(255, 255, 255, 0.98);
+        background-clip: padding-box;
+        -webkit-box-shadow: 1px 1px 2px rgba(0, 0, 0, .125);
+        box-shadow: 1px 1px 2px rgba(0, 0, 0, .125);
+        word-wrap: break-word;
+        white-space: nowrap;
+        -webkit-box-sizing: border-box;
+        box-sizing: border-box;
+        z-index: 999;
+        cursor: pointer;
+        max-height: 70%;
+        overflow-y: auto;
+        overflow-x: hidden;
+    }
+
+    .post-toc .post-toc-title {
+        width: 100%;
+        margin: 0 auto;
+        font-size: 20px;
+        font-weight: 400;
+        text-transform: uppercase;
+        text-align: center;
+    }
+
+    .post-toc .post-toc-content {
+        font-size: 15px;
+    }
+
+    .post-toc .post-toc-content>nav>ul {
+        margin: 10px 0;
+    }
+
+    .post-toc .post-toc-content ul {
+        padding-left: 20px;
+        list-style: square;
+        margin: 0.5em;
+        line-height: 1.8em;
+    }
+
+    .post-toc .post-toc-content ul ul {
+        padding-left: 15px;
+        display: none;
+    }
+
+    @media print,
+    screen and (max-width:1057px) {
+        .post-toc {
+            display: none;
+        }
+    }
+</style>
+<div class="post-toc" style="position: absolute; top: 188px;">
+    <h2 class="post-toc-title">文章目录</h2>
+    <div class="post-toc-content">
+        <nav id="TableOfContents">
+  <ul>
+    <li><a href="#第一题-有多少小于当前数字的数字httpsleetcode-cncomproblemshow-many-numbers-are-smaller-than-the-current-number"><a href="https://leetcode-cn.com/problems/how-many-numbers-are-smaller-than-the-current-number/">第一题. 有多少小于当前数字的数字</a></a>
+      <ul>
+        <li><a href="#解题思路">解题思路</a></li>
+        <li><a href="#代码">代码</a></li>
+      </ul>
+    </li>
+    <li><a href="#第二题-通过投票对团队排名httpsleetcode-cncomproblemsrank-teams-by-votes"><a href="https://leetcode-cn.com/problems/rank-teams-by-votes/">第二题. 通过投票对团队排名</a></a>
+      <ul>
+        <li><a href="#解题思路-1">解题思路</a></li>
+        <li><a href="#代码-1">代码</a></li>
+      </ul>
+    </li>
+    <li><a href="#第三题-二叉树中的列表httpsleetcode-cncomproblemslinked-list-in-binary-tree"><a href="https://leetcode-cn.com/problems/linked-list-in-binary-tree/">第三题. 二叉树中的列表</a></a>
+      <ul>
+        <li><a href="#解题思路-2">解题思路</a></li>
+        <li><a href="#代码-2">代码</a></li>
+      </ul>
+    </li>
+    <li><a href="#第四题-使网格图至少有一条有效路径的最小代价httpsleetcode-cncomproblemsminimum-cost-to-make-at-least-one-valid-path-in-a-grid"><a href="https://leetcode-cn.com/problems/minimum-cost-to-make-at-least-one-valid-path-in-a-grid/">第四题. 使网格图至少有一条有效路径的最小代价</a></a>
+      <ul>
+        <li><a href="#解题思路-3">解题思路</a></li>
+        <li><a href="#代码-3">代码</a></li>
+      </ul>
+    </li>
+  </ul>
+</nav>
+    </div>
+</div>
+<script type="text/javascript">
+    $(document).ready(function () {
+        var postToc = $(".post-toc");
+        if (postToc.length) {
+            var leftPos = $("#main").offset().left;
+            if(leftPos<220){
+                postToc.css({"width":leftPos-10,"margin-left":(0-leftPos)})
+            }
+
+            var t = postToc.offset().top - 20,
+                a = {
+                    start: {
+                        position: "absolute",
+                        top: t
+                    },
+                    process: {
+                        position: "fixed",
+                        top: 20
+                    },
+                };
+            $(window).scroll(function () {
+                var e = $(window).scrollTop();
+                e < t ? postToc.css(a.start) : postToc.css(a.process)
+            })
+        }
+    })
+</script>
+    <article class="post">
+        <header>
+            <h1 class="post-title">力扣题解|第178场周赛</h1>
+        </header>
+        <date class="post-meta meta-date">
+            2020年3月1日
+        </date>
+        
+        <div class="post-meta">
+            <span>|</span>
+            
+            <span class="meta-category"><a href='https://erik-chen.github.io/categories/%E7%AE%97%E6%B3%95'>算法</a></span>
+            
+            <span class="meta-category"><a href='https://erik-chen.github.io/categories/%E5%8A%9B%E6%89%A3'>力扣</a></span>
+            
+        </div>
+        
+        
+        <div class="post-meta">
+            <span id="busuanzi_container_page_pv">|<span id="busuanzi_value_page_pv"></span><span>
+                    阅读</span></span>
+        </div>
+        
+        
+        <div class="clear" style="display: none">
+            <div class="toc-article">
+                <div class="toc-title">文章目录</div>
+            </div>
+        </div>
+        
+        <div class="post-content">
+            <h2 id="第一题-有多少小于当前数字的数字httpsleetcode-cncomproblemshow-many-numbers-are-smaller-than-the-current-number"><a href="https://leetcode-cn.com/problems/how-many-numbers-are-smaller-than-the-current-number/">第一题. 有多少小于当前数字的数字</a></h2>
+<h3 id="解题思路">解题思路</h3>
+<p>维护一个字典，用来储存每个num和它的排序（注意并列的情况）</p>
+<h3 id="代码">代码</h3>
+<div class="highlight"><div style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
+<table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 1
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 2
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 3
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 4
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 5
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 6
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 7
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 8
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 9
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">10
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">11
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">12
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">13
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java"><span style="color:#000;font-weight:bold">class</span> <span style="color:#458;font-weight:bold">Solution</span><span style="color:#000;font-weight:bold">:</span>
+    def <span style="color:#900;font-weight:bold">smallerNumbersThanCurrent</span><span style="color:#000;font-weight:bold">(</span>self<span style="color:#000;font-weight:bold">,</span> nums<span style="color:#000;font-weight:bold">:</span> List<span style="color:#000;font-weight:bold">[</span><span style="color:#458;font-weight:bold">int</span><span style="color:#000;font-weight:bold">])</span> <span style="color:#000;font-weight:bold">-&gt;</span> List<span style="color:#000;font-weight:bold">[</span><span style="color:#458;font-weight:bold">int</span><span style="color:#000;font-weight:bold">]:</span>
+        nums2 <span style="color:#000;font-weight:bold">=</span> sorted<span style="color:#000;font-weight:bold">(</span>nums<span style="color:#000;font-weight:bold">)</span>    <span style="color:#998;font-style:italic">// 对nums排序
+</span><span style="color:#998;font-style:italic"></span>        mapping <span style="color:#000;font-weight:bold">=</span> <span style="color:#000;font-weight:bold">{}</span>            <span style="color:#998;font-style:italic">// mapping储存num和其序号的键值对
+</span><span style="color:#998;font-style:italic"></span>        <span style="color:#000;font-weight:bold">for</span> i<span style="color:#000;font-weight:bold">,</span> num in <span style="color:#900;font-weight:bold">enumerate</span><span style="color:#000;font-weight:bold">(</span>nums2<span style="color:#000;font-weight:bold">):</span>         <span style="color:#998;font-style:italic">// 遍历排序后的数组
+</span><span style="color:#998;font-style:italic"></span>            <span style="color:#000;font-weight:bold">if</span> i <span style="color:#000;font-weight:bold">&gt;</span> 0 and nums2<span style="color:#000;font-weight:bold">[</span>i<span style="color:#000;font-weight:bold">]</span> <span style="color:#000;font-weight:bold">==</span> nums2<span style="color:#000;font-weight:bold">[</span>i<span style="color:#000;font-weight:bold">-</span>1<span style="color:#000;font-weight:bold">]:</span><span style="color:#998;font-style:italic">// 如果某一位跟前一位的值相等，那么它的序号跟前一位一样（并列）
+</span><span style="color:#998;font-style:italic"></span>                mapping<span style="color:#000;font-weight:bold">[</span>nums2<span style="color:#000;font-weight:bold">[</span>i<span style="color:#000;font-weight:bold">]]</span> <span style="color:#000;font-weight:bold">=</span> mapping<span style="color:#000;font-weight:bold">[</span>nums2<span style="color:#000;font-weight:bold">[</span>i<span style="color:#000;font-weight:bold">-</span>1<span style="color:#000;font-weight:bold">]]</span>
+            <span style="color:#000;font-weight:bold">else</span><span style="color:#000;font-weight:bold">:</span>                               <span style="color:#998;font-style:italic">// 如果某一位跟前一位的值不等，那么以index为序号
+</span><span style="color:#998;font-style:italic"></span>                mapping<span style="color:#000;font-weight:bold">[</span>nums2<span style="color:#000;font-weight:bold">[</span>i<span style="color:#000;font-weight:bold">]]</span> <span style="color:#000;font-weight:bold">=</span> i
+        res <span style="color:#000;font-weight:bold">=</span> <span style="color:#000;font-weight:bold">[]</span>
+        <span style="color:#000;font-weight:bold">for</span> num in nums<span style="color:#000;font-weight:bold">:</span>
+            res<span style="color:#000;font-weight:bold">.</span><span style="color:#008080">append</span><span style="color:#000;font-weight:bold">(</span>mapping<span style="color:#000;font-weight:bold">[</span>num<span style="color:#000;font-weight:bold">])</span>            <span style="color:#998;font-style:italic">// res用来储存返回值
+</span><span style="color:#998;font-style:italic"></span>        <span style="color:#000;font-weight:bold">return</span> res
+</code></pre></td></tr></table>
+</div>
+</div><h2 id="第二题-通过投票对团队排名httpsleetcode-cncomproblemsrank-teams-by-votes"><a href="https://leetcode-cn.com/problems/rank-teams-by-votes/">第二题. 通过投票对团队排名</a></h2>
+<h3 id="解题思路-1">解题思路</h3>
+<p>其实就是对votes[0]里的每一个字母进行排序，关键是排序的依据是什么？Python有现成的sort函数，那么参数key是什么呢？</p>
+<p><strong>1.</strong> 比较字母<strong><code>A</code></strong>比字母<strong><code>B</code></strong>在所有str的第<strong><code>1</code></strong>位，哪个出现次数多</p>
+<p><strong>2.</strong> 如果字母<strong><code>A</code></strong>和字母<strong><code>B</code></strong>在所有str的前<strong><code>k</code></strong>位出现次数都一样多，那么比较第<strong><code>k+1</code></strong>位，哪个出现次数多</p>
+<p><strong>3.</strong> 如果都一样多，就以字典序排序</p>
+<p>所以怎么利用以上的规则，把key表示出来呢？</p>
+<p>这里采取了把出现字数压缩成<strong><code>chr</code></strong>值的办法，然后依据字典序的方法来排序</p>
+<p><strong>1.</strong> 如果字母<strong><code>A</code></strong>在所有str的第<strong><code>1</code></strong>位出现5次，<strong><code>B</code></strong>出现4次，那么我们把<strong><code>A</code></strong>标记为<strong><code>chr(1000-5)</code></strong>，<strong><code>B</code></strong>标记为<strong><code>chr(1000-4)</code></strong>。因为<strong><code>chr(1000-5) &lt; chr(1000-4)</code></strong>，所以<strong><code>A</code></strong>排在<strong><code>B</code></strong>的前面</p>
+<p><strong>2.</strong> 如果字母<strong><code>A</code></strong>和<strong><code>B</code></strong>在前<strong><code>k</code></strong>位都是一样的，那么前面k个chr值都一样。如果第<strong><code>k+1</code></strong>位，<strong><code>A</code></strong>比<strong><code>B</code></strong>多，那么依照上面的法则，<strong><code>A</code></strong>排在<strong><code>B</code></strong>的前面。</p>
+<p><strong>3.</strong> 如果都一样，我们就在chr值后面加上字母本身，因为<strong><code>A</code></strong>&lt;<strong><code>B</code></strong>，所以<strong><code>A</code></strong>排在<strong><code>B</code></strong>的前面</p>
+<h3 id="代码-1">代码</h3>
+<div class="highlight"><div style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
+<table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 1
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 2
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 3
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 4
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 5
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 6
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 7
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 8
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 9
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">10
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">11
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-go" data-lang="go">class Solution:
+    def <span style="color:#900;font-weight:bold">rankTeams</span>(self, votes: List[str]) <span style="color:#000;font-weight:bold">-</span>&gt; str:
+        mapping = {}                                        <span style="color:#998;font-style:italic">// mapping储存key值
+</span><span style="color:#998;font-style:italic"></span>        <span style="color:#000;font-weight:bold">for</span> word in votes:
+            <span style="color:#000;font-weight:bold">for</span> i, letter in <span style="color:#900;font-weight:bold">enumerate</span>(word):
+                <span style="color:#000;font-weight:bold">if</span> letter not in mapping:
+                    mapping[letter] = [<span style="color:#099">1000</span>] <span style="color:#000;font-weight:bold">*</span> <span style="color:#0086b3">len</span>(word)    <span style="color:#998;font-style:italic">// 初始化key值
+</span><span style="color:#998;font-style:italic"></span>                mapping[letter][i] <span style="color:#000;font-weight:bold">-=</span> <span style="color:#099">1</span>                     <span style="color:#998;font-style:italic">// 如果A在第i位多出现一次，就在第i位的chr值-=1，提高其比较的优先级
+</span><span style="color:#998;font-style:italic"></span>        <span style="color:#000;font-weight:bold">for</span> letter in mapping:
+            mapping[letter] = <span style="color:#a61717;background-color:#e3d2d2">&#39;&#39;</span>.<span style="color:#900;font-weight:bold">join</span>((<span style="color:#900;font-weight:bold">chr</span>(x) <span style="color:#000;font-weight:bold">for</span> x in mapping[letter])) <span style="color:#000;font-weight:bold">+</span> letter   <span style="color:#998;font-style:italic">// 为了利用字典序，须转换为字符串
+</span><span style="color:#998;font-style:italic"></span>        <span style="color:#000;font-weight:bold">return</span> <span style="color:#a61717;background-color:#e3d2d2">&#39;&#39;</span>.<span style="color:#900;font-weight:bold">join</span>(<span style="color:#900;font-weight:bold">sorted</span>(votes[<span style="color:#099">0</span>], key=lambda x: mapping[x]))                  <span style="color:#998;font-style:italic">// 进行排序
+</span></code></pre></td></tr></table>
+</div>
+</div><h2 id="第三题-二叉树中的列表httpsleetcode-cncomproblemslinked-list-in-binary-tree"><a href="https://leetcode-cn.com/problems/linked-list-in-binary-tree/">第三题. 二叉树中的列表</a></h2>
+<h3 id="解题思路-2">解题思路</h3>
+<p><strong>1.</strong> 外层递归解决链表的头和tree的某个node匹配的问题，匹配成功后进入内层递归</p>
+<p><strong>2.</strong> 内层递归解决链表的每个node和tree的每层node匹配的问题</p>
+<h3 id="代码-2">代码</h3>
+<div class="highlight"><div style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
+<table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 1
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 2
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 3
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 4
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 5
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 6
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 7
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 8
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 9
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">10
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">11
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">12
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">13
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">14
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">15
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">16
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">17
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">18
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">19
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-go" data-lang="go">class Solution:
+	<span style="color:#998;font-style:italic">// 外层递归
+</span><span style="color:#998;font-style:italic"></span>    def <span style="color:#900;font-weight:bold">isSubPath</span>(self, head: ListNode, root: TreeNode) <span style="color:#000;font-weight:bold">-</span>&gt; <span style="color:#458;font-weight:bold">bool</span>:
+        <span style="color:#000;font-weight:bold">if</span> root:
+            <span style="color:#000;font-weight:bold">if</span> head.val <span style="color:#000;font-weight:bold">==</span> root.val:
+                <span style="color:#000;font-weight:bold">if</span> self.<span style="color:#900;font-weight:bold">f</span>(head, root):
+                    <span style="color:#000;font-weight:bold">return</span> True
+            <span style="color:#000;font-weight:bold">return</span> self.<span style="color:#900;font-weight:bold">isSubPath</span>(head, root.left) or self.<span style="color:#900;font-weight:bold">isSubPath</span>(head, root.right)
+        <span style="color:#000;font-weight:bold">return</span> False
+
+	<span style="color:#998;font-style:italic">// 内层递归
+</span><span style="color:#998;font-style:italic"></span>    def <span style="color:#900;font-weight:bold">f</span>(self, node, root):
+        <span style="color:#000;font-weight:bold">if</span> not node.next:
+            <span style="color:#000;font-weight:bold">return</span> True
+        <span style="color:#000;font-weight:bold">if</span> root.left and root.left.val <span style="color:#000;font-weight:bold">==</span> node.next.val and self.<span style="color:#900;font-weight:bold">f</span>(node.next, root.left):
+            <span style="color:#000;font-weight:bold">return</span> True
+        <span style="color:#000;font-weight:bold">if</span> root.right and root.right.val <span style="color:#000;font-weight:bold">==</span> node.next.val and self.<span style="color:#900;font-weight:bold">f</span>(node.next, root.right):
+            <span style="color:#000;font-weight:bold">return</span> True
+        <span style="color:#000;font-weight:bold">return</span> False
+</code></pre></td></tr></table>
+</div>
+</div><h2 id="第四题-使网格图至少有一条有效路径的最小代价httpsleetcode-cncomproblemsminimum-cost-to-make-at-least-one-valid-path-in-a-grid"><a href="https://leetcode-cn.com/problems/minimum-cost-to-make-at-least-one-valid-path-in-a-grid/">第四题. 使网格图至少有一条有效路径的最小代价</a></h2>
+<h3 id="解题思路-3">解题思路</h3>
+<p><strong>1.</strong> 因为需要计算改变数，因此想到BFS</p>
+<p><strong>2.</strong> queue储存所有当前这步可以search到的地方</p>
+<p><strong>3.</strong> visited储存所有历史上search过的地方</p>
+<p><strong>4.</strong> new_queue储存当前的基础上，改变一个箭头，可以search到的地方</p>
+<p><strong>5.</strong> 用new_queue代替queue，同时用count记数，进行BFS</p>
+<p><strong>6.</strong> 当search到右下角，返回count</p>
+<h3 id="代码-3">代码</h3>
+<div class="highlight"><div style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
+<table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 1
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 2
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 3
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 4
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 5
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 6
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 7
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 8
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 9
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">10
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">11
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">12
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">13
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">14
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">15
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">16
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">17
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">18
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">19
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">20
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">21
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">22
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">23
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">24
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">25
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">26
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">27
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">28
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">29
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">30
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">31
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">32
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">33
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">34
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-go" data-lang="go">class Solution:
+    def <span style="color:#900;font-weight:bold">minCost</span>(self, grid: List[List[<span style="color:#458;font-weight:bold">int</span>]]) <span style="color:#000;font-weight:bold">-</span>&gt; <span style="color:#458;font-weight:bold">int</span>:
+        m, n = <span style="color:#0086b3">len</span>(grid), <span style="color:#0086b3">len</span>(grid[<span style="color:#099">0</span>])
+        count = <span style="color:#099">0</span>
+        queue = [(<span style="color:#099">0</span>, <span style="color:#099">0</span>)]
+        visited = {(<span style="color:#099">0</span>, <span style="color:#099">0</span>)}
+        while True:
+            <span style="color:#000;font-weight:bold">for</span> i, j in queue:
+                <span style="color:#000;font-weight:bold">if</span> grid[i][j] <span style="color:#000;font-weight:bold">==</span> <span style="color:#099">1</span>:
+                    <span style="color:#000;font-weight:bold">if</span> j<span style="color:#000;font-weight:bold">+</span><span style="color:#099">1</span> &lt; n <span style="color:#900;font-weight:bold">and</span> (i,j<span style="color:#000;font-weight:bold">+</span><span style="color:#099">1</span>) not in visited:
+                        queue.<span style="color:#0086b3">append</span>((i,j<span style="color:#000;font-weight:bold">+</span><span style="color:#099">1</span>))
+                        visited.<span style="color:#900;font-weight:bold">add</span>((i,j<span style="color:#000;font-weight:bold">+</span><span style="color:#099">1</span>))
+                elif grid[i][j] <span style="color:#000;font-weight:bold">==</span> <span style="color:#099">2</span>:
+                    <span style="color:#000;font-weight:bold">if</span> j<span style="color:#000;font-weight:bold">-</span><span style="color:#099">1</span> <span style="color:#000;font-weight:bold">&gt;=</span><span style="color:#099">0</span> <span style="color:#900;font-weight:bold">and</span> (i,j<span style="color:#000;font-weight:bold">-</span><span style="color:#099">1</span>) not in visited:
+                        queue.<span style="color:#0086b3">append</span>((i,j<span style="color:#000;font-weight:bold">-</span><span style="color:#099">1</span>))
+                        visited.<span style="color:#900;font-weight:bold">add</span>((i,j<span style="color:#000;font-weight:bold">-</span><span style="color:#099">1</span>))
+                elif grid[i][j] <span style="color:#000;font-weight:bold">==</span> <span style="color:#099">3</span>:
+                    <span style="color:#000;font-weight:bold">if</span> i<span style="color:#000;font-weight:bold">+</span><span style="color:#099">1</span> &lt; m <span style="color:#900;font-weight:bold">and</span> (i<span style="color:#000;font-weight:bold">+</span><span style="color:#099">1</span>,j) not in visited:
+                        queue.<span style="color:#0086b3">append</span>((i<span style="color:#000;font-weight:bold">+</span><span style="color:#099">1</span>,j))
+                        visited.<span style="color:#900;font-weight:bold">add</span>((i<span style="color:#000;font-weight:bold">+</span><span style="color:#099">1</span>,j))
+                <span style="color:#000;font-weight:bold">else</span>:
+                    <span style="color:#000;font-weight:bold">if</span> i<span style="color:#000;font-weight:bold">-</span><span style="color:#099">1</span> <span style="color:#000;font-weight:bold">&gt;=</span><span style="color:#099">0</span> <span style="color:#900;font-weight:bold">and</span> (i<span style="color:#000;font-weight:bold">-</span><span style="color:#099">1</span>,j) not in visited:
+                        queue.<span style="color:#0086b3">append</span>((i<span style="color:#000;font-weight:bold">-</span><span style="color:#099">1</span>,j))
+                        visited.<span style="color:#900;font-weight:bold">add</span>((i<span style="color:#000;font-weight:bold">-</span><span style="color:#099">1</span>,j))
+            <span style="color:#000;font-weight:bold">if</span> (m<span style="color:#000;font-weight:bold">-</span><span style="color:#099">1</span>, n<span style="color:#000;font-weight:bold">-</span><span style="color:#099">1</span>) in visited:
+                <span style="color:#000;font-weight:bold">return</span> count
+            count <span style="color:#000;font-weight:bold">+=</span> <span style="color:#099">1</span>
+            new_queue = []
+            <span style="color:#000;font-weight:bold">for</span> i,j in queue:
+                <span style="color:#000;font-weight:bold">for</span> p, q in <span style="color:#900;font-weight:bold">zip</span>((i<span style="color:#000;font-weight:bold">-</span><span style="color:#099">1</span>,i<span style="color:#000;font-weight:bold">+</span><span style="color:#099">1</span>,i,i),(j,j,j<span style="color:#000;font-weight:bold">-</span><span style="color:#099">1</span>,j<span style="color:#000;font-weight:bold">+</span><span style="color:#099">1</span>)):
+                    <span style="color:#000;font-weight:bold">if</span> (p, q) not in visited and <span style="color:#099">0</span><span style="color:#000;font-weight:bold">&lt;=</span>p&lt;m and <span style="color:#099">0</span><span style="color:#000;font-weight:bold">&lt;=</span>q&lt;n:
+                        new_queue.<span style="color:#0086b3">append</span>((p,q))
+                        visited.<span style="color:#900;font-weight:bold">add</span>((p,q))
+            queue = new_queue
+</code></pre></td></tr></table>
+</div>
+</div>
+        </div>
+
+        
+<div class="post-archive">
+    <ul class="post-copyright">
+        <li><strong>原文作者：</strong><a rel="author" href="https://erik-chen.github.io/">erik-chen</a></li>
+        <li style="word-break:break-all"><strong>原文链接：</strong><a href="https://erik-chen.github.io/post/2020-03-01-leetcode-contest-178/">https://erik-chen.github.io/post/2020-03-01-leetcode-contest-178/</a></li>
+        <li><strong>版权声明：</strong>本作品采用<a rel="license" href="https://creativecommons.org/licenses/by-nc-nd/4.0/">知识共享署名-非商业性使用-禁止演绎 4.0 国际许可协议</a>进行许可，非商业转载请注明出处（作者，原文链接），商业转载请联系作者获得授权。</li>
+    </ul>
+</div>
+<br/>
+
+
+
+        
+
+<div class="post-archive">
+    <h2>See Also</h2>
+    <ul class="listing">
+        
+        <li><a href="/post/2020-03-01-program-encoding-and-decoding/">我创造了种“新语言”|加密小程序</a></li>
+        
+        <li><a href="/about/">关于我</a></li>
+        
+        <li><a href="/archives/">归档</a></li>
+        
+        <li><a href="/search/">搜索</a></li>
+        
+    </ul>
+</div>
+
+
+        <div class="post-meta meta-tags">
+            
+            <ul class="clearfix">
+                
+                <li><a href='https://erik-chen.github.io/tags/%E7%AE%97%E6%B3%95'>算法</a></li>
+                
+            </ul>
+            
+        </div>
+    </article>
+    
+    <div id="disqus_thread"></div>
+<script type="application/javascript">
+    var disqus_config = function () {
+    
+    
+    
+    };
+    (function() {
+        if (["localhost", "127.0.0.1"].indexOf(window.location.hostname) != -1) {
+            document.getElementById('disqus_thread').innerHTML = 'Disqus comments not available by default when the website is previewed locally.';
+            return;
+        }
+        var d = document, s = d.createElement('script'); s.async = true;
+        s.src = '//' + "yourdiscussshortname" + '.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', +new Date());
+        (d.head || d.body).appendChild(s);
+    })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+<a href="https://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+
+    
+    
+    <div class="post bg-white">
+      <script src="https://utteranc.es/client.js"
+            repo= "your github repo"
+            issue-term="pathname"
+            theme="github-light"
+            crossorigin="anonymous"
+            async>
+      </script>
+    </div>
+    
+</div>
+
+                </div>
+
+                <div id="secondary">
+    <section class="widget">
+        <form id="search" action='https://erik-chen.github.io/search/' method="get" accept-charset="utf-8" target="_blank" _lpchecked="1">
+      
+      <input type="text" name="q" maxlength="20" placeholder="Search">
+      <input type="hidden" name="sitesearch" value="https://erik-chen.github.io/">
+      <button type="submit" class="submit icon-search"></button>
+</form>
+    </section>
+    
+    <section class="widget">
+        <h3 class="widget-title">最近文章</h3>
+<ul class="widget-list">
+    
+    <li>
+        <a href="https://erik-chen.github.io/post/2020-03-01-leetcode-contest-178/" title="力扣题解|第178场周赛">力扣题解|第178场周赛</a>
+    </li>
+    
+    <li>
+        <a href="https://erik-chen.github.io/post/2020-03-01-program-encoding-and-decoding/" title="我创造了种“新语言”|加密小程序">我创造了种“新语言”|加密小程序</a>
+    </li>
+    
+</ul>
+    </section>
+
+    
+<section class="widget">
+    <h3 class="widget-title" style="color:red">福利派送</h3>
+    <ul class="widget-list">
+        
+        <li>
+            <a href="https://www.aliyun.com/minisite/goods?userCode=jdg9oj97&amp;share_source=copy_link" title="【2019双12】ALL IN CLoud 低至1折" target="_blank" style="color:red">
+                
+                    <img src="https://img.alicdn.com/tfs/TB1_rYHo7P2gK0jSZPxXXacQpXa-690-388.jpg">
+                
+            </a>
+        </li>
+        
+        <li>
+            <a href="https://cloud.tencent.com/act/cps/redirect?redirect=1048&amp;cps_key=14ff722692ac784fa8c3301c8c28d924&amp;from=console" title="助力产业智慧升级，云服务器首年88元起，更有千元代金券礼包免费领！" target="_blank" style="color:red">
+                
+                    <img src="https://upload-dianshi-1255598498.file.myqcloud.com/345-7c71532bd4935fbdd9a67c1a71e577b1767b805c.200%E7%89%88%E6%9C%ACB.jpg">
+                
+            </a>
+        </li>
+        
+        <li>
+            <a href="https://www.aliyun.com/acts/limit-buy?userCode=jdg9oj97" title="【渠道专享低折扣】11月特惠 限时2折" target="_blank" style="color:red">
+                
+                    <img src="https://img.alicdn.com/tfs/TB1hblJl7Y2gK0jSZFgXXc5OFXa-750-400.jpg">
+                
+            </a>
+        </li>
+        
+    </ul>
+</section>
+
+
+    <section class="widget">
+        <h3 class="widget-title">分类</h3>
+<ul class="widget-list">
+    
+    <li><a href="https://erik-chen.github.io/categories/python/">python (1)</a></li>
+    
+    <li><a href="https://erik-chen.github.io/categories/%E5%8A%9B%E6%89%A3/">力扣 (1)</a></li>
+    
+    <li><a href="https://erik-chen.github.io/categories/%E5%B0%8F%E5%B7%A5%E5%85%B7/">小工具 (1)</a></li>
+    
+    <li><a href="https://erik-chen.github.io/categories/%E7%AE%97%E6%B3%95/">算法 (1)</a></li>
+    
+</ul>
+    </section>
+
+    <section class="widget">
+        <h3 class="widget-title">标签</h3>
+<div class="tagcloud">
+    
+    <a href="https://erik-chen.github.io/tags/pyhton/">pyhton</a>
+    
+    <a href="https://erik-chen.github.io/tags/%E7%AE%97%E6%B3%95/">算法</a>
+    
+</div>
+    </section>
+
+    
+<section class="widget">
+    <h3 class="widget-title">友情链接</h3>
+    <ul class="widget-list">
+        
+        <li>
+            <a target="_blank" href="http://www.jerryzou.com/" title="咀嚼之味">咀嚼之味</a>
+        </li>
+        
+    </ul>
+</section>
+
+
+    <section class="widget">
+        <h3 class="widget-title">其它</h3>
+        <ul class="widget-list">
+            <li><a href="https://erik-chen.github.io/index.xml">文章 RSS</a></li>
+        </ul>
+    </section>
+</div>
+            </div>
+        </div>
+    </div>
+    <footer id="footer">
+    <div class="container">
+        &copy; 2020 <a href="https://erik-chen.github.io/">erik-chen的博客 By erik-chen</a>.
+        Powered by <a rel="nofollow noreferer noopener" href="https://gohugo.io" target="_blank">Hugo</a>.
+        <a href="https://www.flysnow.org/" target="_blank">Theme</a> based on <a href="https://github.com/flysnow-org/maupassant-hugo" target="_blank">maupassant</a>.
+        
+    </div>
+</footer>
+
+
+    
+    <script type="text/javascript">
+        window.MathJax = {
+            tex2jax: {
+                inlineMath: [['$', '$']],
+                processEscapes: true
+                }
+            };
+    </script>
+    <script src='https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-MML-AM_CHTML' async></script>
+
+
+<a id="rocket" href="#top"></a>
+<script type="text/javascript" src='/js/totop.js?v=0.0.0' async=""></script>
+
+
+
+    <script type="text/javascript" src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js" async></script>
+
+
+
+
+    <script src='/js/douban.js'></script>
+
+</body>
+
+</html>

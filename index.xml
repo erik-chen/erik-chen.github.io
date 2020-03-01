@@ -6,45 +6,36 @@
     <description>Recent content on erik-chen的博客</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-CN</language>
-    <lastBuildDate>Wed, 18 Dec 2019 21:55:00 +0800</lastBuildDate>
+    <lastBuildDate>Sat, 29 Feb 2020 00:00:00 +0000</lastBuildDate>
     
 	<atom:link href="https://erik-chen.github.io/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
-      <title>Golang Gin 实战（五）| 接收数组和 Map</title>
-      <link>https://erik-chen.github.io/2019/12/18/golang-gin-query-parameters-array-map.html</link>
-      <pubDate>Wed, 18 Dec 2019 21:55:00 +0800</pubDate>
+      <title>力扣题解|第178场周赛</title>
+      <link>https://erik-chen.github.io/post/2020-03-01-leetcode-contest-178/</link>
+      <pubDate>Sun, 01 Mar 2020 13:20:00 +0800</pubDate>
       
-      <guid>https://erik-chen.github.io/2019/12/18/golang-gin-query-parameters-array-map.html</guid>
-      <description>标题 段落内容 标题 段落内容 标题 段落内容 标题 段落内容 标题 段落内容</description>
+      <guid>https://erik-chen.github.io/post/2020-03-01-leetcode-contest-178/</guid>
+      <description>第一题. 有多少小于当前数字的数字 解题思路 维护一个字典，用来储存每个num和它的排序（注意并列的情况） 代码 1 2 3 4 5 6 7 8 9 10 11 12 13 class Solution: def smallerNumbersThanCurrent(self, nums: List[int]) -&amp;gt; List[int]: nums2 = sorted(nums) // 对nums排序 mapping = {} // mapping储存num和其序号的键值对 for i, num in enumerate(nums2): // 遍历排序后的数组 if i &amp;gt; 0 and nums2[i] == nums2[i-1]:// 如果某一位跟前一位的</description>
     </item>
     
     <item>
-      <title>Golang Gin 实战（三）| 路由参数</title>
-      <link>https://erik-chen.github.io/post/2019-12-13-golang-gin-parameters-in-path/</link>
-      <pubDate>Fri, 13 Dec 2019 21:00:00 +0800</pubDate>
+      <title>我创造了种“新语言”|加密小程序</title>
+      <link>https://erik-chen.github.io/post/2020-03-01-program-encoding-and-decoding/</link>
+      <pubDate>Sun, 01 Mar 2020 01:00:00 +0800</pubDate>
       
-      <guid>https://erik-chen.github.io/post/2019-12-13-golang-gin-parameters-in-path/</guid>
-      <description>标题 段落内容 标题 段落内容 标题 段落内容 标题 段落内容 标题 段落内容</description>
-    </item>
-    
-    <item>
-      <title>Golang Gin 实战（三）| 路由参数</title>
-      <link>https://erik-chen.github.io/post/2019-12-15-golang-gin-query-parameters-source-code-analysis/</link>
-      <pubDate>Fri, 13 Dec 2019 21:00:00 +0800</pubDate>
-      
-      <guid>https://erik-chen.github.io/post/2019-12-15-golang-gin-query-parameters-source-code-analysis/</guid>
-      <description>标题 段落内容 标题 段落内容 标题 段落内容 标题 段落内容 标题 段落内容</description>
+      <guid>https://erik-chen.github.io/post/2020-03-01-program-encoding-and-decoding/</guid>
+      <description>起于疫情 2月12号，疫情之下无法出门，跟朋友有聊没聊的 我的设计 段落内容 成功实现 段落内容 debug 是 段落内容 开源链接 段落内容</description>
     </item>
     
     <item>
       <title>关于我</title>
       <link>https://erik-chen.github.io/about/</link>
-      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <pubDate>Sat, 29 Feb 2020 00:00:00 +0000</pubDate>
       
       <guid>https://erik-chen.github.io/about/</guid>
-      <description>你们好，我是陈志豪，坐标上海，心理学专业背景，目前就职于咨询行业，正在转型软件工程师的路上。 自2019年6月9日接触编程，起初一边学习Python语法，一边学习机器学习，以及作为数学基础的线性代数。跑出BP神经网络后，受限于数据和应用场景，不再进一步搞机器学习。期间写了贪食蛇、俄</description>
+      <description>我是谁 你们好，我是陈志豪，坐标上海，心理学专业毕业，就职于咨询行业。 目前正在自学计算机知识和软件开发技能，目标是转型成为软件工程师。 我的自学过程 自学的缘起，是和朋友约定搞机器学习，结果爱上编程，一发不可收拾。 2019年6月9日接触编程，起初一边学习Python，一边看机器学习的课</description>
     </item>
     
     <item>
