@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>数据库 on erik-chen的博客</title>
+    <link>https://erik-chen.github.io/categories/%E6%95%B0%E6%8D%AE%E5%BA%93/</link>
+    <description>Recent content in 数据库 on erik-chen的博客</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>zh-CN</language>
+    <lastBuildDate>Tue, 03 Mar 2020 12:00:00 +0800</lastBuildDate>
+    
+	<atom:link href="https://erik-chen.github.io/categories/%E6%95%B0%E6%8D%AE%E5%BA%93/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>mysql中int、bigint、smallint、tinyint的区别介绍</title>
+      <link>https://erik-chen.github.io/post/2020-03-03-mysql-int-bigint-smallint-tinyint/</link>
+      <pubDate>Tue, 03 Mar 2020 12:00:00 +0800</pubDate>
+      
+      <guid>https://erik-chen.github.io/post/2020-03-03-mysql-int-bigint-smallint-tinyint/</guid>
+      <description>bigint 存储大小为8个字节。每个字节8个2进制位，所以能表示2^64个整数，范围是-2^63 (-9223372036854775808) 到 2^63-1 (9223372036854775807)。 int int的同义词为integer。存储大小为4个字节。每个字节8个2进制位，所以能表示2^32个整数，从 -2^31 (-2,147,483,648) 到 2^31 – 1 (2,147,483,647</description>
+    </item>
+    
+  </channel>
+</rss>

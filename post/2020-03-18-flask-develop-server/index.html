@@ -1,0 +1,613 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <title>flask|启动开发服务器的3种方法 | erik-chen的博客</title>
+    <meta property="og:title" content="flask|启动开发服务器的3种方法 - erik-chen的博客">
+    <meta property="og:type" content="article">
+        
+    <meta property="article:published_time" content='2020-03-18T16:00:00&#43;08:00'>
+        
+        
+    <meta property="article:modified_time" content='2020-03-18T16:00:00&#43;08:00'>
+        
+    <meta name="Keywords" content="关注Python,Algorithm,Data Structure,数据结构,Machine Learning,算法,Django,erik chen,erik-chen,博客">
+    <meta name="description" content="flask|启动开发服务器的3种方法">
+        
+    <meta name="author" content="erik-chen">
+    <meta property="og:url" content="https://erik-chen.github.io/post/2020-03-18-flask-develop-server/">
+    <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon">
+
+    <link rel="stylesheet" href='/css/normalize.css'>
+    <link rel="stylesheet" href='/css/style.css'>
+    <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+
+    
+    <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+    <script>
+    (adsbygoogle = window.adsbygoogle || []).push({
+        google_ad_client: "ca-pub-4031353640611810",
+        enable_page_level_ads: true
+    });
+    </script>
+    
+
+
+    
+    
+        <link rel="stylesheet" href='/css/douban.css'>
+    
+        <link rel="stylesheet" href='/css/other.css'>
+    
+</head>
+
+
+<body>
+    <header id="header" class="clearfix">
+    <div class="container">
+        <div class="col-group">
+            <div class="site-name ">
+                
+                    <a id="logo" href="https://erik-chen.github.io/">
+                        erik-chen的博客
+                    </a>
+                
+                <p class="description">Happy thinking, quick coding. |关注机器学习、数据结构、算法、Web 开发、Python、Django</p>
+            </div>
+            <div>
+                <nav id="nav-menu" class="clearfix">
+                    <a class="current" href="https://erik-chen.github.io/">首页</a>
+                    
+                    <a  href="https://erik-chen.github.io/archives/" title="归档">归档</a>
+                    
+                    <a  href="https://erik-chen.github.io/about/" title="关于">关于</a>
+                    
+                </nav>
+            </div>
+        </div>
+    </div>
+</header>
+
+    <div id="body">
+        <div class="container">
+            <div class="col-group">
+
+                <div class="col-8" id="main">
+                    
+<div class="res-cons">
+    <style type="text/css">
+    .post-toc {
+        position: fixed;
+        width: 200px;
+        margin-left: -210px;
+        padding: 5px 10px;
+        font-family: Athelas, STHeiti, Microsoft Yahei, serif;
+        font-size: 12px;
+        border: 1px solid rgba(0, 0, 0, .07);
+        border-radius: 5px;
+        background-color: rgba(255, 255, 255, 0.98);
+        background-clip: padding-box;
+        -webkit-box-shadow: 1px 1px 2px rgba(0, 0, 0, .125);
+        box-shadow: 1px 1px 2px rgba(0, 0, 0, .125);
+        word-wrap: break-word;
+        white-space: nowrap;
+        -webkit-box-sizing: border-box;
+        box-sizing: border-box;
+        z-index: 999;
+        cursor: pointer;
+        max-height: 70%;
+        overflow-y: auto;
+        overflow-x: hidden;
+    }
+
+    .post-toc .post-toc-title {
+        width: 100%;
+        margin: 0 auto;
+        font-size: 20px;
+        font-weight: 400;
+        text-transform: uppercase;
+        text-align: center;
+    }
+
+    .post-toc .post-toc-content {
+        font-size: 15px;
+    }
+
+    .post-toc .post-toc-content>nav>ul {
+        margin: 10px 0;
+    }
+
+    .post-toc .post-toc-content ul {
+        padding-left: 20px;
+        list-style: square;
+        margin: 0.5em;
+        line-height: 1.8em;
+    }
+
+    .post-toc .post-toc-content ul ul {
+        padding-left: 15px;
+        display: none;
+    }
+
+    @media print,
+    screen and (max-width:1057px) {
+        .post-toc {
+            display: none;
+        }
+    }
+</style>
+<div class="post-toc" style="position: absolute; top: 188px;">
+    <h2 class="post-toc-title">文章目录</h2>
+    <div class="post-toc-content">
+        <nav id="TableOfContents">
+  <ul>
+    <li><a href="#方法一">方法一</a></li>
+    <li><a href="#方法二">方法二</a></li>
+    <li><a href="#方法三">方法三</a></li>
+    <li><a href="#总结">总结</a></li>
+  </ul>
+</nav>
+    </div>
+</div>
+<script type="text/javascript">
+    $(document).ready(function () {
+        var postToc = $(".post-toc");
+        if (postToc.length) {
+            var leftPos = $("#main").offset().left;
+            if(leftPos<220){
+                postToc.css({"width":leftPos-10,"margin-left":(0-leftPos)})
+            }
+
+            var t = postToc.offset().top - 20,
+                a = {
+                    start: {
+                        position: "absolute",
+                        top: t
+                    },
+                    process: {
+                        position: "fixed",
+                        top: 20
+                    },
+                };
+            $(window).scroll(function () {
+                var e = $(window).scrollTop();
+                e < t ? postToc.css(a.start) : postToc.css(a.process)
+            })
+        }
+    })
+</script>
+    <article class="post">
+        <header>
+            <h1 class="post-title">flask|启动开发服务器的3种方法</h1>
+        </header>
+        <date class="post-meta meta-date">
+            2020年3月18日
+        </date>
+        
+        <div class="post-meta">
+            <span>|</span>
+            
+            <span class="meta-category"><a href='https://erik-chen.github.io/categories/flask'>flask</a></span>
+            
+        </div>
+        
+        
+        <div class="post-meta">
+            <span id="busuanzi_container_page_pv">|<span id="busuanzi_value_page_pv"></span><span>
+                    阅读</span></span>
+        </div>
+        
+        
+        <div class="clear" style="display: none">
+            <div class="toc-article">
+                <div class="toc-title">文章目录</div>
+            </div>
+        </div>
+        
+        <div class="post-content">
+            <h2 id="方法一">方法一</h2>
+<p>调用Flask实例的run方法，然后直接运行程序即可</p>
+<div class="highlight"><div style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
+<table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 1
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 2
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 3
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 4
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 5
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 6
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 7
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 8
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 9
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">10
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">11
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#000;font-weight:bold">from</span> <span style="color:#555">flask</span> <span style="color:#000;font-weight:bold">import</span> Flask
+app <span style="color:#000;font-weight:bold">=</span> Flask(__name__)
+
+
+<span style="color:#3c5d5d;font-weight:bold">@app.route</span>(<span style="color:#d14">&#39;/&#39;</span>)
+<span style="color:#000;font-weight:bold">def</span> <span style="color:#900;font-weight:bold">index</span>():
+    <span style="color:#000;font-weight:bold">return</span> <span style="color:#d14">&#39;&lt;h1&gt;The server is on!&lt;/h1&gt;&#39;</span>
+
+
+<span style="color:#000;font-weight:bold">if</span> __name__ <span style="color:#000;font-weight:bold">==</span> <span style="color:#d14">&#39;__main__&#39;</span>:
+    app<span style="color:#000;font-weight:bold">.</span>run()
+</code></pre></td></tr></table>
+</div>
+</div><p>如果要开启debug模式，只需把run方法的debug参数修改为True</p>
+<div class="highlight"><div style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
+<table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">1
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">2
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#000;font-weight:bold">if</span> __name__ <span style="color:#000;font-weight:bold">==</span> <span style="color:#d14">&#39;__main__&#39;</span>:
+    app<span style="color:#000;font-weight:bold">.</span>run(debug<span style="color:#000;font-weight:bold">=</span><span style="color:#999">True</span>)
+</code></pre></td></tr></table>
+</div>
+</div><h2 id="方法二">方法二</h2>
+<p>.py文件里只需如下</p>
+<div class="highlight"><div style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
+<table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">1
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">2
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">3
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">4
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">5
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">6
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">7
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#000;font-weight:bold">from</span> <span style="color:#555">flask</span> <span style="color:#000;font-weight:bold">import</span> Flask
+app <span style="color:#000;font-weight:bold">=</span> Flask(__name__)
+
+
+<span style="color:#3c5d5d;font-weight:bold">@app.route</span>(<span style="color:#d14">&#39;/&#39;</span>)
+<span style="color:#000;font-weight:bold">def</span> <span style="color:#900;font-weight:bold">index</span>():
+    <span style="color:#000;font-weight:bold">return</span> <span style="color:#d14">&#39;&lt;h1&gt;The server is on!&lt;/h1&gt;&#39;</span>
+</code></pre></td></tr></table>
+</div>
+</div><p>在命令行中设定FLASK_APP为.py文件，运行flask run命令</p>
+<div class="highlight"><div style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
+<table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">1
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">2
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">3
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-cmd" data-lang="cmd">(venv) E:\github0318\flasky&gt;set FLASK_APP=hello.py
+
+(venv) E:\github0318\flasky&gt;flask run
+</code></pre></td></tr></table>
+</div>
+</div><p>如果要开启debug模式，就多加一条设定语句</p>
+<div class="highlight"><div style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
+<table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">1
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">2
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">3
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">4
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">5
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-cmd" data-lang="cmd">(venv) E:\github0318\flasky&gt;set FLASK_APP=hello.py
+
+(venv) E:\github0318\flasky&gt;set FLASK_DEBUG=1
+
+(venv) E:\github0318\flasky&gt;flask run
+</code></pre></td></tr></table>
+</div>
+</div><h2 id="方法三">方法三</h2>
+<p>先安装flask-script包</p>
+<div class="highlight"><div style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
+<table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">1
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-cmd" data-lang="cmd">(venv) E:\github0318\flasky&gt;pip install flask-script
+</code></pre></td></tr></table>
+</div>
+</div><p>导入flask_script包（为什么安装的是flask-script，但是导入的是flask_script呢？这是因为包括flask_script在内的专为 Flask 开发的扩展都暴漏在flask_命 名 空 间 下）。然后实例化一个Manager对象，并调用Manager对象的run方法</p>
+<div class="highlight"><div style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
+<table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 1
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 2
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 3
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 4
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 5
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 6
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 7
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 8
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 9
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">10
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">11
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">12
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">13
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#000;font-weight:bold">from</span> <span style="color:#555">flask</span> <span style="color:#000;font-weight:bold">import</span> Flask
+<span style="color:#000;font-weight:bold">from</span> <span style="color:#555">flask_script</span> <span style="color:#000;font-weight:bold">import</span> Manager
+app <span style="color:#000;font-weight:bold">=</span> Flask(__name__)
+manager <span style="color:#000;font-weight:bold">=</span> Manager(app)
+
+
+<span style="color:#3c5d5d;font-weight:bold">@app.route</span>(<span style="color:#d14">&#39;/&#39;</span>)
+<span style="color:#000;font-weight:bold">def</span> <span style="color:#900;font-weight:bold">index</span>():
+    <span style="color:#000;font-weight:bold">return</span> <span style="color:#d14">&#39;&lt;h1&gt;The server is on!&lt;/h1&gt;&#39;</span>
+
+
+<span style="color:#000;font-weight:bold">if</span> __name__ <span style="color:#000;font-weight:bold">==</span> <span style="color:#d14">&#39;__main__&#39;</span>:
+    manager<span style="color:#000;font-weight:bold">.</span>run()
+</code></pre></td></tr></table>
+</div>
+</div><p>然后在命令行工具中运行</p>
+<div class="highlight"><div style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
+<table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">1
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-cmd" data-lang="cmd">(venv) E:\github0318\flasky&gt;python hello.py runserver
+</code></pre></td></tr></table>
+</div>
+</div><p>如果要开启debug模式</p>
+<div class="highlight"><div style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
+<table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">1
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-cmd" data-lang="cmd">(venv) E:\github0318\flasky&gt;python hello.py runserver -d
+</code></pre></td></tr></table>
+</div>
+</div><h2 id="总结">总结</h2>
+<p>以上三个方法都能运行flask自带的开发服务器。</p>
+<p><img src="E:%5Cgitpages%5Ccontent%5Cpost%5C2020-03-18-flask-develop-server.assets%5Cimage-20200318162544759.png" alt="image-20200318162544759"></p>
+<p>debug模式下</p>
+<p><img src="E:%5Cgitpages%5Ccontent%5Cpost%5C2020-03-18-flask-develop-server.assets%5Cimage-20200318162641177.png" alt="image-20200318162641177"></p>
+
+        </div>
+
+        
+<div class="post-archive">
+    <ul class="post-copyright">
+        <li><strong>原文作者：</strong><a rel="author" href="https://erik-chen.github.io/">erik-chen</a></li>
+        <li style="word-break:break-all"><strong>原文链接：</strong><a href="https://erik-chen.github.io/post/2020-03-18-flask-develop-server/">https://erik-chen.github.io/post/2020-03-18-flask-develop-server/</a></li>
+        <li><strong>版权声明：</strong>本作品采用<a rel="license" href="https://creativecommons.org/licenses/by-nc-nd/4.0/">知识共享署名-非商业性使用-禁止演绎 4.0 国际许可协议</a>进行许可，非商业转载请注明出处（作者，原文链接），商业转载请联系作者获得授权。</li>
+    </ul>
+</div>
+<br/>
+
+
+
+        
+
+<div class="post-archive">
+    <h2>See Also</h2>
+    <ul class="listing">
+        
+        <li><a href="/post/2020-03-03-mysql-int-bigint-smallint-tinyint/">mysql中int、bigint、smallint、tinyint的区别介绍</a></li>
+        
+        <li><a href="/post/2020-03-01-leetcode-contest-178/">力扣题解|第178场周赛</a></li>
+        
+        <li><a href="/about/">关于我</a></li>
+        
+        <li><a href="/archives/">归档</a></li>
+        
+        <li><a href="/search/">搜索</a></li>
+        
+    </ul>
+</div>
+
+
+        <div class="post-meta meta-tags">
+            
+            <ul class="clearfix">
+                
+                <li><a href='https://erik-chen.github.io/tags/flask'>flask</a></li>
+                
+            </ul>
+            
+        </div>
+    </article>
+    
+    <div id="disqus_thread"></div>
+<script type="application/javascript">
+    var disqus_config = function () {
+    
+    
+    
+    };
+    (function() {
+        if (["localhost", "127.0.0.1"].indexOf(window.location.hostname) != -1) {
+            document.getElementById('disqus_thread').innerHTML = 'Disqus comments not available by default when the website is previewed locally.';
+            return;
+        }
+        var d = document, s = d.createElement('script'); s.async = true;
+        s.src = '//' + "yourdiscussshortname" + '.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', +new Date());
+        (d.head || d.body).appendChild(s);
+    })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+<a href="https://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+
+    
+    
+    <div class="post bg-white">
+      <script src="https://utteranc.es/client.js"
+            repo= "your github repo"
+            issue-term="pathname"
+            theme="github-light"
+            crossorigin="anonymous"
+            async>
+      </script>
+    </div>
+    
+</div>
+
+                </div>
+
+                <div id="secondary">
+    <section class="widget">
+        <form id="search" action='https://erik-chen.github.io/search/' method="get" accept-charset="utf-8" target="_blank" _lpchecked="1">
+      
+      <input type="text" name="q" maxlength="20" placeholder="Search">
+      <input type="hidden" name="sitesearch" value="https://erik-chen.github.io/">
+      <button type="submit" class="submit icon-search"></button>
+</form>
+    </section>
+    
+    <section class="widget">
+        <h3 class="widget-title">最近文章</h3>
+<ul class="widget-list">
+    
+    <li>
+        <a href="https://erik-chen.github.io/post/2020-03-18-flask-develop-server/" title="flask|启动开发服务器的3种方法">flask|启动开发服务器的3种方法</a>
+    </li>
+    
+    <li>
+        <a href="https://erik-chen.github.io/post/2020-03-03-mysql-int-bigint-smallint-tinyint/" title="mysql中int、bigint、smallint、tinyint的区别介绍">mysql中int、bigint、smallint、tinyint的区别介绍</a>
+    </li>
+    
+    <li>
+        <a href="https://erik-chen.github.io/post/2020-03-01-leetcode-contest-178/" title="力扣题解|第178场周赛">力扣题解|第178场周赛</a>
+    </li>
+    
+</ul>
+    </section>
+
+    
+<section class="widget">
+    <h3 class="widget-title" style="color:red">福利派送</h3>
+    <ul class="widget-list">
+        
+        <li>
+            <a href="https://www.aliyun.com/minisite/goods?userCode=jdg9oj97&amp;share_source=copy_link" title="【2019双12】ALL IN CLoud 低至1折" target="_blank" style="color:red">
+                
+                    <img src="https://img.alicdn.com/tfs/TB1_rYHo7P2gK0jSZPxXXacQpXa-690-388.jpg">
+                
+            </a>
+        </li>
+        
+        <li>
+            <a href="https://cloud.tencent.com/act/cps/redirect?redirect=1048&amp;cps_key=14ff722692ac784fa8c3301c8c28d924&amp;from=console" title="助力产业智慧升级，云服务器首年88元起，更有千元代金券礼包免费领！" target="_blank" style="color:red">
+                
+                    <img src="https://upload-dianshi-1255598498.file.myqcloud.com/345-7c71532bd4935fbdd9a67c1a71e577b1767b805c.200%E7%89%88%E6%9C%ACB.jpg">
+                
+            </a>
+        </li>
+        
+        <li>
+            <a href="https://www.aliyun.com/acts/limit-buy?userCode=jdg9oj97" title="【渠道专享低折扣】11月特惠 限时2折" target="_blank" style="color:red">
+                
+                    <img src="https://img.alicdn.com/tfs/TB1hblJl7Y2gK0jSZFgXXc5OFXa-750-400.jpg">
+                
+            </a>
+        </li>
+        
+    </ul>
+</section>
+
+
+    <section class="widget">
+        <h3 class="widget-title">分类</h3>
+<ul class="widget-list">
+    
+    <li><a href="https://erik-chen.github.io/categories/flask/">flask (1)</a></li>
+    
+    <li><a href="https://erik-chen.github.io/categories/mysql/">mysql (1)</a></li>
+    
+    <li><a href="https://erik-chen.github.io/categories/%E5%8A%9B%E6%89%A3/">力扣 (1)</a></li>
+    
+    <li><a href="https://erik-chen.github.io/categories/%E6%95%B0%E6%8D%AE%E5%BA%93/">数据库 (1)</a></li>
+    
+    <li><a href="https://erik-chen.github.io/categories/%E7%AE%97%E6%B3%95/">算法 (1)</a></li>
+    
+</ul>
+    </section>
+
+    <section class="widget">
+        <h3 class="widget-title">标签</h3>
+<div class="tagcloud">
+    
+    <a href="https://erik-chen.github.io/tags/flask/">flask</a>
+    
+    <a href="https://erik-chen.github.io/tags/%E6%95%B0%E6%8D%AE%E5%BA%93/">数据库</a>
+    
+    <a href="https://erik-chen.github.io/tags/%E7%AE%97%E6%B3%95/">算法</a>
+    
+</div>
+    </section>
+
+    
+<section class="widget">
+    <h3 class="widget-title">友情链接</h3>
+    <ul class="widget-list">
+        
+        <li>
+            <a target="_blank" href="https://xidui.github.io/" title="xidui is lazy">xidui is lazy</a>
+        </li>
+        
+        <li>
+            <a target="_blank" href="http://www.jerryzou.com/" title="咀嚼之味">咀嚼之味</a>
+        </li>
+        
+        <li>
+            <a target="_blank" href="https://www.liwenzhou.com/" title="李文周的博客">李文周的博客</a>
+        </li>
+        
+    </ul>
+</section>
+
+
+    <section class="widget">
+        <h3 class="widget-title">其它</h3>
+        <ul class="widget-list">
+            <li><a href="https://erik-chen.github.io/index.xml">文章 RSS</a></li>
+        </ul>
+    </section>
+</div>
+            </div>
+        </div>
+    </div>
+    <footer id="footer">
+    <div class="container">
+        &copy; 2020 <a href="https://erik-chen.github.io/">erik-chen的博客 By erik-chen</a>.
+        Powered by <a rel="nofollow noreferer noopener" href="https://gohugo.io" target="_blank">Hugo</a>.
+        <a href="https://www.flysnow.org/" target="_blank">Theme</a> based on <a href="https://github.com/flysnow-org/maupassant-hugo" target="_blank">maupassant</a>.
+        
+    </div>
+</footer>
+
+
+    
+    <script type="text/javascript">
+        window.MathJax = {
+            tex2jax: {
+                inlineMath: [['$', '$']],
+                processEscapes: true
+                }
+            };
+    </script>
+    <script src='https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-MML-AM_CHTML' async></script>
+
+
+<a id="rocket" href="#top"></a>
+<script type="text/javascript" src='/js/totop.js?v=0.0.0' async=""></script>
+
+
+
+    <script type="text/javascript" src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js" async></script>
+
+
+
+
+    <script src='/js/douban.js'></script>
+
+</body>
+
+</html>

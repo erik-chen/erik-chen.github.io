@@ -79,6 +79,54 @@
     <article class="post">
         <header>
             <h1 class="post-title">
+                <a href="https://erik-chen.github.io/post/2020-03-18-flask-develop-server/" title="flask|启动开发服务器的3种方法">flask|启动开发服务器的3种方法</a>
+            </h1>
+        </header>
+        <date class="post-meta meta-date">
+            2020年3月18日
+        </date>
+        
+        <div class="post-meta">
+            <span>|</span>
+            
+            <span class="meta-category"><a href='https://erik-chen.github.io/categories/flask'>flask</a></span>
+            
+        </div>
+        
+        <div class="post-content">
+            方法一 调用Flask实例的run方法，然后直接运行程序即可 1 2 3 4 5 6 7 8 9 10 11 from flask import Flask app = Flask(__name__) @app.route(&#39;/&#39;) def index(): return &#39;&lt;h1&gt;The server is on!&lt;/h1&gt;&#39; if __name__ == &#39;__main__&#39;: app.run() 如果要开启debug模式，只需把run方法的debug参数修改为True 1 2 if __name__ == &#39;__main__&#39;: app.run(debug=True) 方法二 .py文件里只需如下 1 2 3 4 5 6 7 from flask import Flask app = Flask(__name__) @app.route(&#39;/&#39;) def index(): return &#39;&lt;h1&gt;The server is on!&lt;/h1&gt;&#39; 在命……
+        </div>
+        <p class="readmore"><a href="https://erik-chen.github.io/post/2020-03-18-flask-develop-server/">阅读全文</a></p>
+    </article>
+    
+    <article class="post">
+        <header>
+            <h1 class="post-title">
+                <a href="https://erik-chen.github.io/post/2020-03-03-mysql-int-bigint-smallint-tinyint/" title="mysql中int、bigint、smallint、tinyint的区别介绍">mysql中int、bigint、smallint、tinyint的区别介绍</a>
+            </h1>
+        </header>
+        <date class="post-meta meta-date">
+            2020年3月3日
+        </date>
+        
+        <div class="post-meta">
+            <span>|</span>
+            
+            <span class="meta-category"><a href='https://erik-chen.github.io/categories/mysql'>mysql</a></span>
+            
+            <span class="meta-category"><a href='https://erik-chen.github.io/categories/%E6%95%B0%E6%8D%AE%E5%BA%93'>数据库</a></span>
+            
+        </div>
+        
+        <div class="post-content">
+            bigint 存储大小为8个字节。每个字节8个2进制位，所以能表示2^64个整数，范围是-2^63 (-9223372036854775808) 到 2^63-1 (9223372036854775807)。 int int的同义词为integer。存储大小为4个字节。每个字节8个2进制位，所以能表示2^32个整数，从 -2^31 (-2,147,483,648) 到 2^31 – 1 (2,147,483,647……
+        </div>
+        <p class="readmore"><a href="https://erik-chen.github.io/post/2020-03-03-mysql-int-bigint-smallint-tinyint/">阅读全文</a></p>
+    </article>
+    
+    <article class="post">
+        <header>
+            <h1 class="post-title">
                 <a href="https://erik-chen.github.io/post/2020-03-01-leetcode-contest-178/" title="力扣题解|第178场周赛">力扣题解|第178场周赛</a>
             </h1>
         </header>
@@ -99,31 +147,6 @@
             本文是力扣第128场双周赛的题解分享。 第一题. 有多少小于当前数字的数字 考察知识点 数据结构：数组、哈希表 解题思路 维护一个哈希表，用来储存每个num和它的排序（注意并列的情况） 代码 1 2 3 4 5 6 7 8 9 10 11 12 13 class Solution: def smallerNumbersThanCurrent(self, nums: List[int]) -&gt; List[int]: nums2 = sorted(nums) // 对nums排序 mapping = {} // mapping储存num和其序号……
         </div>
         <p class="readmore"><a href="https://erik-chen.github.io/post/2020-03-01-leetcode-contest-178/">阅读全文</a></p>
-    </article>
-    
-    <article class="post">
-        <header>
-            <h1 class="post-title">
-                <a href="https://erik-chen.github.io/post/2020-03-01-program-encoding-and-decoding/" title="我创造了种“新语言”|加密小程序">我创造了种“新语言”|加密小程序</a>
-            </h1>
-        </header>
-        <date class="post-meta meta-date">
-            2020年3月1日
-        </date>
-        
-        <div class="post-meta">
-            <span>|</span>
-            
-            <span class="meta-category"><a href='https://erik-chen.github.io/categories/%E5%B0%8F%E5%B7%A5%E5%85%B7'>小工具</a></span>
-            
-            <span class="meta-category"><a href='https://erik-chen.github.io/categories/python'>python</a></span>
-            
-        </div>
-        
-        <div class="post-content">
-            本文记录一个聊天小工具的开发经过。 起于疫情 2月12号，疫情之下无法出门，跟朋友有聊没聊的 我的设计 段落内容 成功实现 段落内容 debug 是 段落内容 开源链接 段落内容……
-        </div>
-        <p class="readmore"><a href="https://erik-chen.github.io/post/2020-03-01-program-encoding-and-decoding/">阅读全文</a></p>
     </article>
     
     
@@ -151,11 +174,15 @@
 <ul class="widget-list">
     
     <li>
-        <a href="https://erik-chen.github.io/post/2020-03-01-leetcode-contest-178/" title="力扣题解|第178场周赛">力扣题解|第178场周赛</a>
+        <a href="https://erik-chen.github.io/post/2020-03-18-flask-develop-server/" title="flask|启动开发服务器的3种方法">flask|启动开发服务器的3种方法</a>
     </li>
     
     <li>
-        <a href="https://erik-chen.github.io/post/2020-03-01-program-encoding-and-decoding/" title="我创造了种“新语言”|加密小程序">我创造了种“新语言”|加密小程序</a>
+        <a href="https://erik-chen.github.io/post/2020-03-03-mysql-int-bigint-smallint-tinyint/" title="mysql中int、bigint、smallint、tinyint的区别介绍">mysql中int、bigint、smallint、tinyint的区别介绍</a>
+    </li>
+    
+    <li>
+        <a href="https://erik-chen.github.io/post/2020-03-01-leetcode-contest-178/" title="力扣题解|第178场周赛">力扣题解|第178场周赛</a>
     </li>
     
 </ul>
@@ -198,11 +225,13 @@
         <h3 class="widget-title">分类</h3>
 <ul class="widget-list">
     
-    <li><a href="https://erik-chen.github.io/categories/python/">python (1)</a></li>
+    <li><a href="https://erik-chen.github.io/categories/flask/">flask (1)</a></li>
+    
+    <li><a href="https://erik-chen.github.io/categories/mysql/">mysql (1)</a></li>
     
     <li><a href="https://erik-chen.github.io/categories/%E5%8A%9B%E6%89%A3/">力扣 (1)</a></li>
     
-    <li><a href="https://erik-chen.github.io/categories/%E5%B0%8F%E5%B7%A5%E5%85%B7/">小工具 (1)</a></li>
+    <li><a href="https://erik-chen.github.io/categories/%E6%95%B0%E6%8D%AE%E5%BA%93/">数据库 (1)</a></li>
     
     <li><a href="https://erik-chen.github.io/categories/%E7%AE%97%E6%B3%95/">算法 (1)</a></li>
     
@@ -213,7 +242,9 @@
         <h3 class="widget-title">标签</h3>
 <div class="tagcloud">
     
-    <a href="https://erik-chen.github.io/tags/pyhton/">pyhton</a>
+    <a href="https://erik-chen.github.io/tags/flask/">flask</a>
+    
+    <a href="https://erik-chen.github.io/tags/%E6%95%B0%E6%8D%AE%E5%BA%93/">数据库</a>
     
     <a href="https://erik-chen.github.io/tags/%E7%AE%97%E6%B3%95/">算法</a>
     

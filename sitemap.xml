@@ -4,17 +4,52 @@
   
   <url>
     <loc>https://erik-chen.github.io/categories/</loc>
-    <lastmod>2020-03-01T13:20:00+08:00</lastmod>
+    <lastmod>2020-03-18T16:00:00+08:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://erik-chen.github.io/tags/flask/</loc>
+    <lastmod>2020-03-18T16:00:00+08:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://erik-chen.github.io/categories/flask/</loc>
+    <lastmod>2020-03-18T16:00:00+08:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://erik-chen.github.io/post/2020-03-18-flask-develop-server/</loc>
+    <lastmod>2020-03-18T16:00:00+08:00</lastmod>
   </url>
   
   <url>
     <loc>https://erik-chen.github.io/post/</loc>
-    <lastmod>2020-03-01T13:20:00+08:00</lastmod>
+    <lastmod>2020-03-18T16:00:00+08:00</lastmod>
   </url>
   
   <url>
     <loc>https://erik-chen.github.io/tags/</loc>
-    <lastmod>2020-03-01T13:20:00+08:00</lastmod>
+    <lastmod>2020-03-18T16:00:00+08:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://erik-chen.github.io/categories/mysql/</loc>
+    <lastmod>2020-03-03T12:00:00+08:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://erik-chen.github.io/post/2020-03-03-mysql-int-bigint-smallint-tinyint/</loc>
+    <lastmod>2020-03-03T12:00:00+08:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://erik-chen.github.io/tags/%E6%95%B0%E6%8D%AE%E5%BA%93/</loc>
+    <lastmod>2020-03-03T12:00:00+08:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://erik-chen.github.io/categories/%E6%95%B0%E6%8D%AE%E5%BA%93/</loc>
+    <lastmod>2020-03-03T12:00:00+08:00</lastmod>
   </url>
   
   <url>
@@ -35,26 +70,6 @@
   <url>
     <loc>https://erik-chen.github.io/categories/%E7%AE%97%E6%B3%95/</loc>
     <lastmod>2020-03-01T13:20:00+08:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://erik-chen.github.io/tags/pyhton/</loc>
-    <lastmod>2020-03-01T01:00:00+08:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://erik-chen.github.io/categories/python/</loc>
-    <lastmod>2020-03-01T01:00:00+08:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://erik-chen.github.io/categories/%E5%B0%8F%E5%B7%A5%E5%85%B7/</loc>
-    <lastmod>2020-03-01T01:00:00+08:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://erik-chen.github.io/post/2020-03-01-program-encoding-and-decoding/</loc>
-    <lastmod>2020-03-01T01:00:00+08:00</lastmod>
   </url>
   
   <url>
